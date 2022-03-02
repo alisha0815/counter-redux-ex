@@ -1,4 +1,4 @@
-import { ADD, DELETE } from "../reducers/toDo";
+import { ADD, DELETE, UPDATE } from "../reducers/toDo";
 
 export const addToDo = (text) => {
   return {
@@ -10,6 +10,13 @@ export const addToDo = (text) => {
 export const deleteToDo = (id) => {
   return {
     type: DELETE,
+    id,
+  };
+};
+
+export const updateToDo = (id) => {
+  return {
+    type: UPDATE,
     id,
   };
 };
