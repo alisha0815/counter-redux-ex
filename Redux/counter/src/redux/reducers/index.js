@@ -1,13 +1,8 @@
-import { DECREMENT, INCREMENT } from "./counterReducer";
+import { combineReducers } from "redux";
+import countReducer from "./counter";
+import toDoReducer from "./toDo";
 
-export const increment = () => {
-  return {
-    type: INCREMENT,
-  };
-};
-
-export const decrement = () => {
-  return {
-    type: DECREMENT,
-  };
-};
+export const combinedReducers = combineReducers({
+  countReducer,
+  toDoReducer,
+});
