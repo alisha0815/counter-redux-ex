@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "./redux/actions/counterActions";
-import { addToDo } from "./redux/actions/toDoActions.js";
+import { addToDo, deleteToDo } from "./redux/actions/toDoActions.js";
 
 function App() {
   const counter = useSelector((state) => state.countReducer);
@@ -32,7 +32,12 @@ function App() {
         <ul>
           TO DO List:
           {toDo.map((item) => (
-            <li key={item.id}>{item.text}</li>
+            <li key={item.id}>
+              {item.text}
+              <button onClick={() => dispatch(deleteToDo(item.id))}>
+                DELETE
+              </button>
+            </li>
           ))}
         </ul>
       </div>
