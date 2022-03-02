@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Form from "./components/Form";
 import { decrement, increment } from "./redux/actions/counterActions";
 import {
   addToDo,
@@ -11,6 +12,7 @@ function App() {
   const counter = useSelector((state) => state.countReducer);
   const toDo = useSelector((state) => state.toDoReducer);
   const [text, setText] = useState("");
+  const [newText, setNewText] = useState(text);
   const onChange = (e) => setText(e.target.value);
   const onSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +21,13 @@ function App() {
     setText("");
   };
 
-  console.log(toDo);
   const dispatch = useDispatch();
+
+  const updateHandler = (id) => {
+    dispatch(updateToDo(id));
+    const newText = prompt("Edit to do");
+    setText(newText);
+  };
   return (
     <>
       <h1>Counter</h1>
@@ -41,9 +48,7 @@ function App() {
               <button onClick={() => dispatch(deleteToDo(item.id))}>
                 DELETE
               </button>
-              <button onClick={() => dispatch(updateToDo(item.id))}>
-                UPDATE
-              </button>
+              <button onClick={() => updateHandler(item.id)}>UPDATE</button>
             </li>
           ))}
         </ul>
